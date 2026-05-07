@@ -4,8 +4,9 @@
 
 A pair of single-side A4 briefing cards profiling Leicester City 2015/16 — the most recent freely available season of Premier League event-level data — written from a United-facing tactical perspective. The methodology is data-source-agnostic and plugs directly into modern Opta / StatsBomb commercial feeds.
 
-> **Live report:** _to be deployed at https://manchester-united-fc.vercel.app/leicester-1516_
-> _(see [`DEPLOY.md`](./DEPLOY.md) for the deploy steps; build is one command, `uv run python -m analysis`.)_
+> ### → Read the briefing: **[manchester-united-fc.vercel.app/leicester-1516](https://manchester-united-fc.vercel.app/leicester-1516)**
+>
+> Hosted as A4-portrait HTML; readable in any browser, print-ready (Cmd-P → Save as PDF). No install, no setup.
 
 ---
 
@@ -21,7 +22,7 @@ Leicester's 2015/16 corner threat is concentrated in **two right-side outswinger
 - **Card B — Leicester's goal-kick build-up: where United presses to flip possession.**
   Two figures: long-GK landing-zone heatmap with first-contact and second-ball outcomes per zone (Fig 3), and the top-3 post-GK 3-action chain templates with a hand-rolled Karun Singh xT grid as underlay (Fig 4). 329 goal kicks, 96% long, 115 complete 3-action chains, Vardy in 36%.
 
-The two cards are wired into a single static HTML at [`reports/leicester-1516.html`](./reports/leicester-1516.html). Both are A4-portrait, print-ready (Cmd-P → Save as PDF in any browser).
+Both cards are A4-portrait, print-ready, and live at **[manchester-united-fc.vercel.app/leicester-1516](https://manchester-united-fc.vercel.app/leicester-1516)**.
 
 ## Methodology and what this data can't see
 
@@ -33,61 +34,11 @@ Each analysis ships with:
 4. **The findings** in coach-facing language with explicit "if X, then Y" exploitation triggers.
 5. **What internal data would refine** — every finding is footnoted with the gap between public and commercial feeds.
 
-Per-figure caveats live on the briefing cards themselves; deeper details are in [`docs/methodology.md`](./docs/methodology.md), [`agent-outputs/phase-3/corner_findings.md`](./agent-outputs/phase-3/corner_findings.md), and [`agent-outputs/phase-3/goal_kick_findings.md`](./agent-outputs/phase-3/goal_kick_findings.md).
+Per-figure caveats live on the briefing cards themselves; deeper details are in [`docs/methodology.md`](./docs/methodology.md).
 
-## Reproduce the build
+## Stack
 
-```bash
-# Install Python deps (uv handles the venv)
-uv sync
-
-# Run the full pipeline (data pull → 4 figures → static HTML)
-uv run python -m analysis
-
-# Outputs:
-#   reports/assets/fig1_corner_delivery_heatmap.png
-#   reports/assets/fig2_freeze_frame_composite.png
-#   reports/assets/fig3_goal_kick_recovery.png
-#   reports/assets/fig4_post_gk_xt_chain.png
-#   reports/leicester-1516.html
-#   data/processed/snapshots.json   (anchor-number test fixture)
-```
-
-The first run pulls 38 matches from StatsBomb (~5 min). Subsequent runs are <10 s thanks to parquet caching in `data/raw/` and `data/processed/`.
-
-## Stack and project structure
-
-```
-analysis/
-  __init__.py            shared paths and constants
-  __main__.py            end-to-end orchestrator
-  _verify.py             coordinate / direction / filter sanity harness
-  data.py                StatsBomb fetch + parquet cache
-  characterise.py        regenerates docs/data_characterisation.md
-  corners.py             Card A — corner extraction, classification, ranking
-  freeze_frames.py       Card A — shot_freeze_frame parsing + KDE composite
-  goal_kicks.py          Card B — GK extraction, first-contact, chain build
-  xthreat.py             hand-rolled Karun Singh xT (16×12 grid)
-  viz.py                 four figures, one function each
-  report.py              Jinja templates → static HTML
-
-reports/
-  index.html             portfolio hub
-  leicester-1516.html    the two A4 cards
-  styles.css             A4 portrait, print-ready
-  assets/                committed PNGs (Vercel-served)
-
-data/
-  raw/                   gitignored; events_<match_id>.parquet
-  processed/             gitignored; xt_grid.pkl, snapshots.json
-
-docs/
-  data_characterisation.md
-  methodology.md         filters, sequence definitions, xT version, caveats
-  _verify.log            harness output (8 anchor checks)
-
-agent-outputs/           (gitignored) multi-agent design workflow outputs
-```
+Python (pandas, numpy, matplotlib, **mplsoccer**, scipy) for the analysis pipeline; a hand-rolled Karun Singh **xT** grid (Singh 2018, 16×12); **Jinja**-rendered static HTML laid out as A4 portrait with print-ready CSS; **Vercel** for hosting. The full pipeline runs from one command and reproduces the four figures plus the static report. Repo layout follows `analysis/` (the pipeline) → `reports/` (the public artefact) → `docs/` (methodology and caveats).
 
 ## Limitations (the honest surface)
 
