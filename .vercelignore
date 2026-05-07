@@ -1,0 +1,13 @@
+analysis/
+data/
+docs/
+agent-outputs/
+pyproject.toml
+uv.lock
+.python-version
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+DEPLOY.md
