@@ -186,6 +186,127 @@ body.index-page { background: #f1efe8; }
   line-height: 1.5;
 }
 
+/* ---------- Context strip (above briefing card on screen, hidden in print) ---------- */
+
+.context-strip {
+  max-width: 178mm;
+  margin: 14mm auto 0;
+  padding: 9px 16px;
+  background: #faf8f3;
+  border: 1px solid #e6e0cf;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: #3a3a3a;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.context-strip .context-meta { color: #555; }
+.context-strip strong { color: #1a1a1a; }
+.context-strip a {
+  color: #b91c1c;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.context-strip a:hover { text-decoration: underline; }
+body > .context-strip + main { margin-top: 6mm; }
+
+/* ---------- Eyebrow (used on letter + index) ---------- */
+
+.eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b91c1c;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+/* ---------- Letter page ---------- */
+
+body.letter-page { background: #f1efe8; }
+.letter-main {
+  max-width: 720px;
+  margin: 8vh auto 6vh;
+  padding: 44px 44px 36px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 24px rgba(20,20,20,0.06);
+  font-size: 14.5px;
+  line-height: 1.62;
+}
+.letter-main h1 {
+  font-size: 28px;
+  margin: 0 0 18px 0;
+  letter-spacing: -0.012em;
+}
+.letter-main p { margin: 0 0 14px 0; color: #1a1a1a; }
+.letter-main .lead {
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+}
+.letter-main .callout {
+  background: #faf8f3;
+  border: 1px solid #e6e0cf;
+  border-left: 4px solid #b91c1c;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 10px 0 18px 0;
+}
+.letter-main .callout a { color: #b91c1c; text-decoration: none; font-size: 15.5px; }
+.letter-main .callout a:hover { text-decoration: underline; }
+.letter-main .callout-sub {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+.letter-main ul.cards-summary {
+  margin: 6px 0 18px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.letter-main ul.cards-summary li {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: #fafaf6;
+  border-left: 3px solid #c7c1ad;
+  border-radius: 0 4px 4px 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.letter-main .quote {
+  border-left: 3px solid #0d3a66;
+  padding: 4px 0 4px 16px;
+  color: #1a1a1a;
+  margin: 18px 0;
+  font-size: 14px;
+}
+.letter-main .quote em { color: #0d3a66; }
+.letter-main .signoff { margin-top: 24px; }
+.letter-main hr { border: none; border-top: 1px solid #e6e0cf; margin: 24px 0 16px; }
+.letter-main ul.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  font-size: 13px;
+  color: #555;
+}
+.letter-main ul.footer-links a { color: #0d3a66; text-decoration: none; }
+.letter-main ul.footer-links a:hover { text-decoration: underline; }
+
+/* ---------- Index page eyebrow + tweaks ---------- */
+
+.index-main .eyebrow { margin-bottom: 8px; }
+.index-main h1 { margin-top: 0; }
+
 /* ---------- Print rules ---------- */
 
 @media print {
@@ -199,4 +320,5 @@ body.index-page { background: #f1efe8; }
   }
   .prelude, .report-footer { font-size: 10px; }
   figure.hero img { border: none; }
+  .context-strip { display: none; }
 }
