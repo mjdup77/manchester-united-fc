@@ -1,0 +1,202 @@
+/* Leicester 2015/16 briefing — A4 portrait, screen-and-print friendly. */
+
+@page {
+  size: A4 portrait;
+  margin: 12mm 14mm;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f3ee;
+  color: #1a1a1a;
+  font-family: -apple-system, "SF Pro Text", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+main {
+  max-width: 178mm;
+  margin: 18mm auto;
+  background: #ffffff;
+  padding: 12mm 14mm 18mm;
+  box-shadow: 0 1px 24px rgba(20, 20, 20, 0.06);
+  border-radius: 6px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #111;
+  letter-spacing: -0.01em;
+}
+
+.prelude {
+  color: #555;
+  font-size: 13px;
+  margin: 0 0 18mm 0;
+  max-width: 64ch;
+}
+
+.card {
+  page-break-after: always;
+  break-after: page;
+  border-top: 1px solid #ddd;
+  padding-top: 8mm;
+  margin-top: 12mm;
+}
+.card:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+.card header {
+  margin-bottom: 6mm;
+}
+
+.card h2 {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0;
+  color: #0d3a66;
+  letter-spacing: -0.005em;
+}
+.card-b h2 { color: #5e3404; }
+
+.card .subtitle {
+  font-size: 14px;
+  color: #555;
+  margin: 2px 0 8px 0;
+  font-style: italic;
+}
+
+.card .anchor {
+  font-size: 12.5px;
+  color: #333;
+  background: #f5f5f1;
+  border-left: 3px solid #c7c1ad;
+  padding: 6px 10px;
+  margin: 0;
+}
+
+figure.hero {
+  margin: 6mm 0 4mm 0;
+  text-align: center;
+}
+figure.hero img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e6e6e0;
+  border-radius: 3px;
+}
+figure.hero figcaption {
+  font-size: 11.5px;
+  color: #666;
+  margin-top: 4px;
+  text-align: left;
+  max-width: 64ch;
+}
+
+.findings h3 {
+  font-size: 14.5px;
+  margin: 8mm 0 2mm 0;
+  color: #1a1a1a;
+}
+.findings p, .findings ol, .findings ul {
+  margin: 0 0 4mm 0;
+  font-size: 13px;
+  max-width: 70ch;
+}
+.findings strong { color: #111; }
+.findings ol { padding-left: 20px; }
+
+ul.zone-list {
+  list-style: square;
+  padding-left: 20px;
+  font-size: 13px;
+}
+ul.zone-list li { margin-bottom: 4px; }
+
+footer.caveats {
+  margin-top: 6mm;
+  padding-top: 4mm;
+  border-top: 1px dashed #cfc9b8;
+  color: #555;
+  font-size: 11.5px;
+  max-width: 70ch;
+}
+footer.caveats strong { color: #1a1a1a; }
+footer.caveats code {
+  font-family: "SF Mono", "Menlo", Consolas, monospace;
+  background: #f1efe8;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 0.95em;
+}
+
+footer.report-footer {
+  margin-top: 12mm;
+  padding-top: 6mm;
+  border-top: 1px solid #ddd;
+  color: #888;
+  font-size: 11px;
+}
+footer.report-footer a { color: #0d3a66; text-decoration: none; }
+footer.report-footer a:hover { text-decoration: underline; }
+
+/* ---------- Index page ---------- */
+
+body.index-page { background: #f1efe8; }
+.index-main {
+  max-width: 720px;
+  margin: 14vh auto;
+  padding: 36px 32px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 24px rgba(20,20,20,0.06);
+}
+.card-index {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 18px 0;
+}
+.card-index li a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 18px 22px;
+  background: #faf8f3;
+  border: 1px solid #e6e0cf;
+  border-radius: 6px;
+  transition: transform 0.12s ease;
+}
+.card-index li a:hover {
+  transform: translateY(-2px);
+  border-color: #0d3a66;
+}
+.card-index li h2 {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  color: #0d3a66;
+}
+.card-index li p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ---------- Print rules ---------- */
+
+@media print {
+  html, body { background: #fff; }
+  main {
+    margin: 0;
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
+    border-radius: 0;
+  }
+  .prelude, .report-footer { font-size: 10px; }
+  figure.hero img { border: none; }
+}

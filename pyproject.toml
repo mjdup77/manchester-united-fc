@@ -1,0 +1,36 @@
+[project]
+name = "manchester-united-fc"
+version = "0.1.0"
+description = "Tactical intelligence portfolio analyses on Manchester United and opponents using public football event data."
+authors = [{ name = "MJ du Plessis" }]
+requires-python = ">=3.11"
+readme = "README.md"
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "mplsoccer>=1.4",
+    "statsbombpy>=1.14",
+    "requests>=2.32",
+    "scipy>=1.13",
+    "scikit-learn>=1.5",
+    "pyarrow>=17.0",
+    "jupyter>=1.0",
+    "ipykernel>=6.29",
+    "tqdm>=4.66",
+    "jinja2>=3.1",
+    # NB: socceraction>=1.4 was originally listed for Phase 3b (xT) but it
+    # hard-pins numpy<2.0, which segfaults pandas 2.2 on macOS arm64. We
+    # hand-roll Karun Singh's xT in `analysis/xthreat.py` instead — same
+    # methodology, cleaner dep graph, preserves the credibility hook.
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.5",
+    "pytest>=8.2",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

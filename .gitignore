@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+
+# uv
+.uv-cache/
+
+# Data
+data/raw/
+data/processed/
+*.parquet
+*.csv.gz
+
+# Outputs
+reports/*.pdf
+reports/*.svg
+!reports/.gitkeep
+!reports/assets/
+
+# Multi-agent workflow scratch
+agent-outputs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Vercel
+.vercel/
+
+# Node (if site is added later)
+node_modules/
+dist/
+*.log
